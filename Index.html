@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swastik Restaurant — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C0160C;
+  --red-dark: #8B0E08;
+  --red-light: #FFF5F5;
+  --red-mid: #E8352A;
+  --gold: #C9973A;
+  --white: #FFFFFF;
+  --cream: #FEFCFA;
+  --dark: #1A0A08;
+  --text: #2C1008;
+  --muted: #8B5E56;
+  --border: #F0D8D5;
+  --green: #2D6A4F;
+  --green-bg: #EAF5EE;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);}
+
+/* HERO */
+.hero{
+  background: var(--red-dark);
+  background-image: repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0,rgba(255,255,255,0.02) 1px,transparent 0,transparent 50%);
+  background-size: 20px 20px;
+  padding:70px 24px 90px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:'';
+  position:absolute;bottom:-1px;left:0;right:0;height:40px;
+  background:var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero-top{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:30px;padding:6px 20px;
+  margin-bottom:24px;
+}
+.hero-top span{color:rgba(255,255,255,0.7);font-size:11px;letter-spacing:3px;text-transform:uppercase;}
+.hero-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(44px,8vw,80px);
+  color:#fff;
+  line-height:1;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{color:rgba(255,255,255,0.55);font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:300;}
+.hero-line{width:50px;height:2px;background:var(--gold);margin:20px auto 0;border-radius:2px;}
+
+/* NAV */
+.nav{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;gap:0;overflow-x:auto;
+  scrollbar-width:none;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 16px rgba(192,22,12,0.08);
+}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{
+  flex-shrink:0;background:none;border:none;
+  border-bottom:3px solid transparent;
+  padding:16px 18px 13px;
+  font-family:'Jost',sans-serif;font-size:12px;font-weight:500;
+  color:var(--muted);cursor:pointer;
+  transition:all 0.2s;white-space:nowrap;
+  letter-spacing:0.5px;
+}
+.nav-btn:hover{color:var(--red);}
+.nav-btn.active{color:var(--red);border-bottom-color:var(--red);}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:48px 20px 80px;}
+
+/* SECTION */
+.section{margin-bottom:64px;}
+.section.hidden{display:none;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+.sec-icon{
+  width:46px;height:46px;border-radius:12px;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:600;color:var(--dark);
+}
+.sec-line{flex:1;height:1px;background:var(--border);}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:18px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  padding:18px 20px 16px;
+  transition:transform 0.2s,box-shadow 0.2s;
+  position:relative;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(192,22,12,0.1);}
+.card-num{
+  position:absolute;top:14px;right:16px;
+  font-size:10px;color:var(--muted);font-weight:400;letter-spacing:1px;
+}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.card-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:600;color:var(--dark);line-height:1.3;
+  padding-right:40px;
+}
+.card-price{
+  font-size:16px;font-weight:500;color:var(--red);
+  white-space:nowrap;flex-shrink:0;
+}
+.card-desc{font-size:12.5px;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.serves{
+  display:flex;align-items:center;gap:5px;
+  background:var(--green-bg);color:var(--green);
+  font-size:11px;font-weight:500;
+  padding:4px 10px;border-radius:20px;
+}
+.badge-veg{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--green);font-weight:500;}
+.badge-nonveg{display:flex;align-items:center;gap:4px;font-size:11px;color:#B33000;font-weight:500;}
+.dot-veg{width:11px;height:11px;border:2px solid var(--green);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dot-veg::after{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;}
+.dot-nonveg{width:11px;height:11px;border:2px solid #B33000;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dot-nonveg::after{content:'';width:5px;height:5px;background:#B33000;border-radius:50%;}
+
+/* FOOTER */
+footer{background:var(--red-dark);color:rgba(255,255,255,0.5);text-align:center;padding:36px 24px;font-size:13px;font-weight:300;}
+footer strong{color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px;display:block;margin-bottom:6px;font-weight:600;}
+footer span{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top"><div class="hero-dot"></div><span>Est. Swastik Restaurant</span><div class="hero-dot"></div></div>
+  <h1>Swastik <em>Restaurant</em></h1>
+  <div class="hero-sub">Fine Dining · Family Restaurant</div>
+  <div class="hero-line"></div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" data-s="all">All Items</button>
+  <button class="nav-btn" data-s="soup">Soups</button>
+  <button class="nav-btn" data-s="starter">Starters</button>
+  <button class="nav-btn" data-s="tandoori">Tandoori & Kabab</button>
+  <button class="nav-btn" data-s="maincourse">Main Course</button>
+  <button class="nav-btn" data-s="breads">Breads</button>
+  <button class="nav-btn" data-s="biryani">Biryani & Rice</button>
+  <button class="nav-btn" data-s="chinese">Chinese</button>
+  <button class="nav-btn" data-s="drinks">Drinks & Thali</button>
+</div>
+
+<div class="main">
+
+<!-- SOUPS -->
+<div class="section" data-id="soup">
+  <div class="sec-head"><div class="sec-icon">🍜</div><h2 class="sec-title">Soups</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#001</span>
+      <div class="card-top"><div class="card-name">Cream of Tomato Soup</div><div class="card-price">₹90</div></div>
+      <div class="card-desc">Velvety smooth tomato soup blended with cream and herbs — warm, comforting, and a timeless classic to start your meal.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#002</span>
+      <div class="card-top"><div class="card-name">Veg Manchow Soup</div><div class="card-price">₹80</div></div>
+      <div class="card-desc">Thick, tangy Indo-Chinese soup with finely chopped vegetables, soy sauce and crispy fried noodles on top.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#003</span>
+      <div class="card-top"><div class="card-name">Veg Hot & Sour Soup</div><div class="card-price">₹80</div></div>
+      <div class="card-desc">A bold Chinese-style soup with a fiery kick and tangy vinegar punch — filled with mushrooms, bamboo shoots and vegetables.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#005</span>
+      <div class="card-top"><div class="card-name">Veg Clear Soup</div><div class="card-price">₹80</div></div>
+      <div class="card-desc">Light and delicate broth with fresh vegetables and aromatic spices — perfect for a healthy, soothing start.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#006</span>
+      <div class="card-top"><div class="card-name">Mushroom Manchow Soup</div><div class="card-price">₹100</div></div>
+      <div class="card-desc">Rich manchow soup loaded with fresh mushrooms — earthy, deep flavored and topped with crunchy fried noodles.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#008</span>
+      <div class="card-top"><div class="card-name">Cream of Palak Soup</div><div class="card-price">₹90</div></div>
+      <div class="card-desc">Smooth, creamy spinach soup with a hint of garlic and fresh cream — nutritious and beautifully vibrant green.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#011</span>
+      <div class="card-top"><div class="card-name">Chicken Manchow Soup</div><div class="card-price">₹90</div></div>
+      <div class="card-desc">Hearty manchow with tender shredded chicken, vegetables and soy — deep, savory and satisfying.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#012</span>
+      <div class="card-top"><div class="card-name">Chicken Hot & Sour Soup</div><div class="card-price">₹90</div></div>
+      <div class="card-desc">Spicy and tangy soup with juicy chicken pieces, mushrooms and a bold vinegar-soy base — a non-veg crowd favourite.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STARTERS -->
+<div class="section" data-id="starter">
+  <div class="sec-head"><div class="sec-icon">🍢</div><h2 class="sec-title">Starters</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#021</span>
+      <div class="card-top"><div class="card-name">Gobi Manchurian</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Crispy cauliflower florets tossed in a sticky, spicy Manchurian sauce with ginger, garlic and spring onions.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#022</span>
+      <div class="card-top"><div class="card-name">Veg Manchurian</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Soft vegetable dumplings fried golden and coated in a rich, tangy Manchurian gravy — a classic Indo-Chinese favourite.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#023</span>
+      <div class="card-top"><div class="card-name">Paneer Manchurian</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Succulent cottage cheese cubes in a bold, glossy Manchurian sauce — rich, spicy and deeply satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#025</span>
+      <div class="card-top"><div class="card-name">Mushroom Manchurian</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Whole mushrooms battered and fried, then glazed in a spicy Manchurian sauce — earthy, umami and addictive.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#027</span>
+      <div class="card-top"><div class="card-name">Gobi Chilly</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Crispy cauliflower stir-fried with green chilies, capsicum and onions in a fiery Indo-Chinese sauce.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#029</span>
+      <div class="card-top"><div class="card-name">Paneer Chilly</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Paneer cubes tossed with capsicum, onion and a hot chili sauce — bold flavors with a satisfying bite.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#032</span>
+      <div class="card-top"><div class="card-name">Paneer Tikka (Dry)</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Marinated cottage cheese cubes grilled in a tandoor until perfectly charred — smoky, spiced and irresistible.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#034</span>
+      <div class="card-top"><div class="card-name">Paneer Schezwan</div><div class="card-price">₹170</div></div>
+      <div class="card-desc">Paneer in a fiery Schezwan sauce with bold spices and aromatics — one of our most popular starters.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#052</span>
+      <div class="card-top"><div class="card-name">Chicken Crispy</div><div class="card-price">₹200</div></div>
+      <div class="card-desc">Juicy chicken strips coated in a light crispy batter and deep-fried until golden — delicious with chutney or sauce.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#053</span>
+      <div class="card-top"><div class="card-name">Chicken 65</div><div class="card-price">₹180</div></div>
+      <div class="card-desc">South Indian classic — fiery, deep-fried chicken with curry leaves, red chilies and tangy marinade. A must-try!</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#054</span>
+      <div class="card-top"><div class="card-name">Chicken Schezwan</div><div class="card-price">₹180</div></div>
+      <div class="card-desc">Tender chicken tossed in bold Schezwan sauce — intensely spicy, fragrant and packed with flavor.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#060</span>
+      <div class="card-top"><div class="card-name">Prawns Chilly</div><div class="card-price">₹240</div></div>
+      <div class="card-desc">Juicy prawns stir-fried with green chilies, capsicum and onions in a bold Indo-Chinese style sauce.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TANDOORI & KABAB -->
+<div class="section" data-id="tandoori">
+  <div class="sec-head"><div class="sec-icon">🔥</div><h2 class="sec-title">Tandoori & Kabab</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#071</span>
+      <div class="card-top"><div class="card-name">Tandoori Chicken (Full)</div><div class="card-price">₹300</div></div>
+      <div class="card-desc">Whole chicken marinated overnight in yogurt and spices, roasted in a clay tandoor — smoky, succulent and deeply flavorful.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2–3</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#072</span>
+      <div class="card-top"><div class="card-name">Tandoori Chicken (Half)</div><div class="card-price">₹170</div></div>
+      <div class="card-desc">Half portion of our signature tandoori chicken — same irresistible smoky marinade, perfect for one person.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#073</span>
+      <div class="card-top"><div class="card-name">Chicken Tikka Kabab (8pc)</div><div class="card-price">₹200</div></div>
+      <div class="card-desc">Eight tender boneless chicken pieces marinated in spiced yogurt and grilled to charred perfection in the tandoor.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#075</span>
+      <div class="card-top"><div class="card-name">Chicken Sheak Kabab</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">Minced chicken blended with spices and herbs, skewered and grilled in the tandoor — juicy, smoky and aromatic.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#078</span>
+      <div class="card-top"><div class="card-name">Chicken Reshmi Kabab</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">Silky smooth kabab made with cream, cashews and mild spices — tender, melt-in-the-mouth and subtly rich.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#079</span>
+      <div class="card-top"><div class="card-name">Chicken Adhraki Kabab</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">Chicken kabab with a bold ginger-forward marinade — fragrant, warming and full of character.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#081</span>
+      <div class="card-top"><div class="card-name">Chicken Pahadi Kabab</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">Mountain-style kabab marinated in fresh herbs, raw papaya and green masala — bright, light and wonderfully fragrant.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAIN COURSE -->
+<div class="section" data-id="maincourse">
+  <div class="sec-head"><div class="sec-icon">🍛</div><h2 class="sec-title">Main Course</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#091</span>
+      <div class="card-top"><div class="card-name">Dal Fry</div><div class="card-price">₹100</div></div>
+      <div class="card-desc">Yellow lentils tempered with cumin, garlic, tomatoes and red chilies — a wholesome everyday Indian comfort food.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#092</span>
+      <div class="card-top"><div class="card-name">Dal Tadka</div><div class="card-price">₹110</div></div>
+      <div class="card-desc">Slow-cooked lentils finished with a sizzling tadka of ghee, mustard seeds, dried red chilies and garlic — rich and aromatic.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#113</span>
+      <div class="card-top"><div class="card-name">Channa Masala</div><div class="card-price">₹120</div></div>
+      <div class="card-desc">Hearty chickpeas slow-cooked in a tangy, spiced tomato-onion masala — bold, filling and packed with protein.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#118</span>
+      <div class="card-top"><div class="card-name">Baigan Bharta</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Smoky fire-roasted eggplant mashed with onions, tomatoes and spices — rustic, deeply flavorful and uniquely satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#121</span>
+      <div class="card-top"><div class="card-name">Alu Masala</div><div class="card-price">₹120</div></div>
+      <div class="card-desc">Tender potatoes simmered in a rich, spiced tomato gravy — a comforting everyday sabzi that pairs perfectly with bread.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#129</span>
+      <div class="card-top"><div class="card-name">Malai Methi Mutter</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Fresh fenugreek leaves and green peas in a luscious creamy white gravy — mildly spiced and luxuriously smooth.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#130</span>
+      <div class="card-top"><div class="card-name">Paneer Masala</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Fresh cottage cheese cubes in a robust, tangy tomato-based masala — a restaurant staple loved across all ages.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#131</span>
+      <div class="card-top"><div class="card-name">Paneer Tikka Masala</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Tandoor-grilled paneer tikka pieces simmered in a smoky, rich orange masala gravy — a royal combination.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#132</span>
+      <div class="card-top"><div class="card-name">Paneer Butter Masala</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Soft paneer in a velvety butter-tomato sauce — mild, creamy and utterly indulgent. Best with butter naan.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#144</span>
+      <div class="card-top"><div class="card-name">Paneer Makhaniwala</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Paneer in a rich, silky makhani gravy with cashew-tomato base and a generous swirl of fresh cream.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#146</span>
+      <div class="card-top"><div class="card-name">Shahi Paneer</div><div class="card-price">₹170</div></div>
+      <div class="card-desc">Royal Mughlai preparation — paneer in an opulent gravy of cream, cashews and aromatic spices. A celebration dish.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#151</span>
+      <div class="card-top"><div class="card-name">Kaju Masala</div><div class="card-price">₹200</div></div>
+      <div class="card-desc">Whole cashew nuts simmered in a spiced, rich tomato-onion gravy — indulgent, nutty and deeply satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#191</span>
+      <div class="card-top"><div class="card-name">Chicken Kadai</div><div class="card-price">₹220</div></div>
+      <div class="card-desc">Chicken cooked in a traditional iron kadai with whole spices, capsicum and a bold tomato-coriander gravy.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#193</span>
+      <div class="card-top"><div class="card-name">Chicken Mughlai</div><div class="card-price">₹200</div></div>
+      <div class="card-desc">Tender chicken in a rich, aromatic Mughlai gravy of cream, almonds and whole spices — regal and deeply satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#195</span>
+      <div class="card-top"><div class="card-name">Chicken Rogan Josh</div><div class="card-price">₹220</div></div>
+      <div class="card-desc">A Kashmiri classic — chicken slow-cooked in a deep red gravy of Kashmiri chilies, fennel and whole spices.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#209</span>
+      <div class="card-top"><div class="card-name">Mutton Masala</div><div class="card-price">₹220</div></div>
+      <div class="card-desc">Slow-cooked tender mutton in a robust, spicy onion-tomato masala — rich, meaty and deeply satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#212</span>
+      <div class="card-top"><div class="card-name">Mutton Kolhapuri</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">A fiery Maharashtra-style mutton preparation with the legendary Kolhapuri masala — intensely spiced and unforgettable.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BREADS -->
+<div class="section" data-id="breads">
+  <div class="sec-head"><div class="sec-icon">🫓</div><h2 class="sec-title">Roti / Naan / Breads</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#244</span>
+      <div class="card-top"><div class="card-name">Roti</div><div class="card-price">₹15</div></div>
+      <div class="card-desc">Thin whole-wheat flatbread baked fresh in the tandoor — light, healthy and perfect with any curry.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#245</span>
+      <div class="card-top"><div class="card-name">Butter Roti</div><div class="card-price">₹20</div></div>
+      <div class="card-desc">Classic tandoor roti finished with a generous smear of butter — soft, warm and irresistibly fragrant.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#246</span>
+      <div class="card-top"><div class="card-name">Naan</div><div class="card-price">₹25</div></div>
+      <div class="card-desc">Soft leavened bread baked in the tandoor until puffed and slightly charred — the perfect companion for rich gravies.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#247</span>
+      <div class="card-top"><div class="card-name">Butter Naan</div><div class="card-price">₹30</div></div>
+      <div class="card-desc">Our fluffy naan slathered with fresh butter right off the tandoor — soft, golden and absolutely delicious.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#248</span>
+      <div class="card-top"><div class="card-name">Paratha</div><div class="card-price">₹25</div></div>
+      <div class="card-desc">Layered whole-wheat flatbread pan-fried until flaky and golden — hearty and filling for any meal.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#252</span>
+      <div class="card-top"><div class="card-name">Alu Paratha</div><div class="card-price">₹60</div></div>
+      <div class="card-desc">Flaky whole-wheat paratha stuffed with spiced mashed potato filling — best with butter and curd.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#255</span>
+      <div class="card-top"><div class="card-name">Paneer Paratha</div><div class="card-price">₹70</div></div>
+      <div class="card-desc">Buttery paratha stuffed with spiced grated paneer — protein-rich, filling and delightfully crispy on the outside.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#256</span>
+      <div class="card-top"><div class="card-name">Garlic Naan</div><div class="card-price">₹40</div></div>
+      <div class="card-desc">Tandoor-baked naan topped with freshly minced garlic and coriander — aromatic, garlicky and absolutely irresistible.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BIRYANI & RICE -->
+<div class="section" data-id="biryani">
+  <div class="sec-head"><div class="sec-icon">🍚</div><h2 class="sec-title">Biryani & Rice</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#301</span>
+      <div class="card-top"><div class="card-name">Chicken Biryani</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Fragrant basmati rice layered with spiced chicken, saffron and fried onions — a timeless one-pot feast.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#303</span>
+      <div class="card-top"><div class="card-name">Chicken Hydrabadi Biryani</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Authentic dum-style Hyderabadi biryani with tender chicken, whole spices and the signature kewra fragrance.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#304</span>
+      <div class="card-top"><div class="card-name">Mutton Biryani</div><div class="card-price">₹220</div></div>
+      <div class="card-desc">Slow-cooked mutton on the bone layered with aromatic rice — rich, meaty and deeply spiced for biryani lovers.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#307</span>
+      <div class="card-top"><div class="card-name">Egg Biryani</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Fluffy basmati rice cooked with whole boiled eggs and aromatic biryani spices — simple, satisfying and flavorful.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#309</span>
+      <div class="card-top"><div class="card-name">Prawns Biryani</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">Juicy prawns cooked into fragrant biryani rice with coastal spices — a seafood lover's ultimate treat.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#319</span>
+      <div class="card-top"><div class="card-name">Veg Biryani</div><div class="card-price">₹120</div></div>
+      <div class="card-desc">Seasonal vegetables and basmati rice slow-cooked with whole spices and saffron — aromatic, colorful and delicious.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#322</span>
+      <div class="card-top"><div class="card-name">Paneer Biryani</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Spiced paneer cubes layered with fragrant rice and fried onions — a rich vegetarian biryani that satisfies every craving.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#326</span>
+      <div class="card-top"><div class="card-name">Kaju Biryani</div><div class="card-price">₹200</div></div>
+      <div class="card-desc">Whole cashews and aromatic rice cooked together — a rich, indulgent vegetarian biryani that feels luxurious.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#321</span>
+      <div class="card-top"><div class="card-name">Veg Tawa Pulav</div><div class="card-price">₹140</div></div>
+      <div class="card-desc">Mumbai street-style rice stir-fried on a hot tawa with pav bhaji masala, vegetables and butter — bold and delicious.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHINESE -->
+<div class="section" data-id="chinese">
+  <div class="sec-head"><div class="sec-icon">🥢</div><h2 class="sec-title">Chinese — Fried Rice & Noodles</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#389</span>
+      <div class="card-top"><div class="card-name">Veg Fried Rice</div><div class="card-price">₹120</div></div>
+      <div class="card-desc">Wok-tossed basmati rice with fresh vegetables, soy sauce and aromatics — light, flavorful and satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#390</span>
+      <div class="card-top"><div class="card-name">Veg Schezwan Fried Rice</div><div class="card-price">₹130</div></div>
+      <div class="card-desc">Fried rice tossed in fiery Schezwan sauce with colorful vegetables — bold, spicy and incredibly moreish.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#391</span>
+      <div class="card-top"><div class="card-name">Veg Triple Fried Rice</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">A triple treat — fried rice loaded with three different vegetable preparations for maximum flavor and texture.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#372</span>
+      <div class="card-top"><div class="card-name">Prawns Fried Rice</div><div class="card-price">₹230</div></div>
+      <div class="card-desc">Succulent prawns wok-fried with rice, eggs and vegetables in a savory soy-based sauce — a seafood Chinese classic.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#376</span>
+      <div class="card-top"><div class="card-name">Chicken Garlic Fried Rice</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Chicken fried rice with a heavy garlic hand — fragrant, savory and packed with wok-charred flavor.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#433</span>
+      <div class="card-top"><div class="card-name">Veg Chowmein</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">Stir-fried noodles with fresh vegetables in a light soy-sesame sauce — a beloved Chinese street-food classic.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#434</span>
+      <div class="card-top"><div class="card-name">Chicken Chowmein</div><div class="card-price">₹180</div></div>
+      <div class="card-desc">Wok-tossed noodles with juicy chicken strips and vegetables in a savory sauce — filling, flavorful and satisfying.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#429</span>
+      <div class="card-top"><div class="card-name">Veg Chinese Chopsy</div><div class="card-price">₹150</div></div>
+      <div class="card-desc">Crispy noodles topped with a thick vegetable sauce — a unique dish that combines crunch and richness in every bite.</div>
+      <div class="card-footer"><div class="serves">👥 Serves 2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DRINKS & THALI -->
+<div class="section" data-id="drinks">
+  <div class="sec-head"><div class="sec-icon">🥤</div><h2 class="sec-title">Drinks & Thali</h2><div class="sec-line"></div></div>
+  <div class="grid">
+
+    <div class="card"><span class="card-num">#439</span>
+      <div class="card-top"><div class="card-name">Butter Milk</div><div class="card-price">₹25</div></div>
+      <div class="card-desc">Cool, salted Indian buttermilk with cumin and coriander — the ultimate digestive drink after a spicy meal.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#440</span>
+      <div class="card-top"><div class="card-name">Lassi</div><div class="card-price">₹45</div></div>
+      <div class="card-desc">Thick, frothy blended yogurt drink — sweet or salted as you prefer. Cooling, creamy and deeply refreshing.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#443</span>
+      <div class="card-top"><div class="card-name">Fresh Lime Juice</div><div class="card-price">₹20</div></div>
+      <div class="card-desc">Freshly squeezed lime with a hint of salt or sugar — zesty, refreshing and perfect to cool down on a warm day.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#444</span>
+      <div class="card-top"><div class="card-name">Spl. Veg Thali</div><div class="card-price">₹160</div></div>
+      <div class="card-desc">A complete vegetarian feast — dal, sabzi, rice, roti, papad, salad and sweet. Everything in one wholesome platter.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#445</span>
+      <div class="card-top"><div class="card-name">Chicken Thali</div><div class="card-price">₹190</div></div>
+      <div class="card-desc">A hearty non-veg thali with chicken curry, rice, roti, dal, salad and papad — a complete satisfying meal.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#446</span>
+      <div class="card-top"><div class="card-name">Mutton Thali</div><div class="card-price">₹250</div></div>
+      <div class="card-desc">The ultimate thali — rich mutton curry, fragrant rice, fresh roti, dal, salad and papad. A true feast on a plate.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-nonveg"><div class="dot-nonveg"></div>Non-Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#264</span>
+      <div class="card-top"><div class="card-name">Curd</div><div class="card-price">₹50</div></div>
+      <div class="card-desc">Fresh set curd — cool, creamy and mildly tangy. A perfect side to balance any spicy main course.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+    <div class="card"><span class="card-num">#265</span>
+      <div class="card-top"><div class="card-name">Boondi Raita</div><div class="card-price">₹70</div></div>
+      <div class="card-desc">Chilled yogurt studded with crispy boondi pearls and seasoned with roasted cumin — a classic cooling side.</div>
+      <div class="card-footer"><div class="serves">👤 Serves 1–2</div><div class="badge-veg"><div class="dot-veg"></div>Veg</div></div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <strong>Swastik Restaurant</strong>
+  Fine Dining · Family Restaurant · <span>Taste the Tradition</span>
+</footer>
+
+<script>
+const btns = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.section[data-id]');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const t = btn.dataset.s;
+    sections.forEach(s => {
+      s.classList.toggle('hidden', t !== 'all' && s.dataset.id !== t);
+    });
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+});
+</script>
+</body>
+</html>
